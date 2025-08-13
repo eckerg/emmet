@@ -2,6 +2,104 @@
     Modals
 -->
 
+<div id="emmet-cookie-modal" class="modal fade" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5">Hozzájárulás sütik használatához</h1>
+            </div>
+            <div class="modal-body">
+                <p>Az Emmet az eszközödre mentett <strong>sütik</strong> (cookie-k) segítségével tud emlékezni rád és a beállításaidra a legközelebbi látogatásodkor.</p>
+                <p>A hatályos jogszabályok szerint a hozzájárulásodat kell kérnünk ahhoz, hogy az Emmet olyan sütiket helyezhessen az eszközödre,
+                    amelyek nem feltétlenül szükségesek az alapműködéshez.</p>
+                <div id="emmet-cookie-accordion" class="accordion">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#emmet-cookie-accordion-i1">
+                                Milyen adatokat ment az Emmet az eszközömre?
+                            </button>
+                        </h2>
+                        <div id="emmet-cookie-accordion-i1" class="accordion-collapse collapse" data-bs-parent="#emmet-cookie-accordion">
+                            <div class="accordion-body">
+                                <ul class="mb-0">
+                                    <li>A <strong>sütikkel</strong> kapcsolatos választásodat.</li>
+                                    <li><strong>A beállításaidat,</strong> például, hogy milyen betűméretet állítasz be a dalszövegekhez.</li>
+                                    <li><strong>Az aktuális verziószámot,</strong> hogy a legközelebbi látogatásodkor észre tudjuk venni, ha frissült az Emmet, és tájékoztathassunk a változásokról.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#emmet-cookie-accordion-i2">
+                                Mi történik, ha megtagadom a hozzájárulást?
+                            </button>
+                        </h2>
+                        <div id="emmet-cookie-accordion-i2" class="accordion-collapse collapse" data-bs-parent="#emmet-cookie-accordion">
+                            <div class="accordion-body">
+                                <p>Ebben az esetben az Emmet továbbra is működni fog, azonban:</p>
+                                <ul>
+                                    <li>A beállításaid elvesznek, amikor elhagyod az oldalt.</li>
+                                    <li>Nem kapsz értesítést a frissítésekről.</li>
+                                </ul>
+                                <p class="mb-0">A sütikkel kapcsolatos elutasító válaszodat ebben az esetben is eltároljuk egy feltétlenül szükségesnek minősülő sütiben,
+                                    hogy ne kelljen minden látogatásodkor újra megkérdeznünk. Ilyenkor ez az egyetlen süti jön létre, kizárólag az elutasítás tényét tartalmazza,
+                                    és csak ennek az ablaknak az átugrására használjuk.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#emmet-cookie-accordion-i3">
+                                További tudnivalók
+                            </button>
+                        </h2>
+                        <div id="emmet-cookie-accordion-i3" class="accordion-collapse collapse" data-bs-parent="#emmet-cookie-accordion">
+                            <div class="accordion-body">
+                                <ul class="mb-0">
+                                    <li>Csak kényelmi (funkcionális) sütiket használunk, statisztikai és marketingcélúakat nem.</li>
+                                    <li>A hozzájárulásodat bármikor megváltoztathatod az <strong>Emmet</strong> menü 
+                                        <span class="fw-bold text-nowrap"><span class="oi oi-shield"></span> Sütikezelés</span> menüpontjában.</li>
+                                    <li>A sütik a legutóbbi látogatásodtól számított 1 évig érvényesek; ha 1 évig nem látogatod meg az Emmetet, automatikusan törlődnek.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--
+                <div class="alert alert-primary">
+                    <h2 class="fs-6">Az Emmet a következő adatokat menti az eszközödre:</h2>
+                    <ul class="mb-0">
+                        <li><strong>A beállításaidat,</strong> például, hogy milyen betűméretet állítasz be a dalszövegekhez.</li>
+                        <li><strong>Az aktuális verziószámot,</strong> hogy a legközelebbi látogatásodkor észre tudjuk venni, ha frissült az Emmet, és tájékoztathassunk a változásokról.</li>
+                    </ul>
+                </div>
+                <div class="alert alert-danger">
+                    <h2 class="fs-6">Lehetőséged van megtagadni a hozzájárulást.</h2>
+                    <p>Ebben az esetben az Emmet továbbra is működni fog, azonban:</p>
+                    <ul class="mb-0">
+                        <li>A beállításaid elvesznek, amikor elhagyod az oldalt.</li>
+                        <li>Nem kapsz értesítést a frissítésekről.</li>
+                    </ul>
+                </div>
+                <div class="alert alert-secondary mb-0">
+                    <h2 class="fs-6">További tudnivalók</h2>
+                    <ul class="mb-0">
+                        <li>Csak funkcionális sütiket használunk, statisztikai és marketingcélúakat nem.</li>
+                        <li>Az elutasító válaszodat szintén egy sütiben tároljuk el, hogy ne kelljen minden látogatásodkor újra megkérdeznünk.
+                            Ilyenkor ez az egyetlen süti jön létre, kizárólag az elutasítás tényét tartalmazza, és csak ennek az ablaknak az átugrására használjuk.</li>
+                        <li>A hozzájárulásodat bármikor megváltoztathatod az <strong>Emmet</strong> menü <strong><span class="oi oi-shield"></span> Sütikezelés</strong> menüpontjában.</li>
+                    </ul>
+                </div>-->
+            </div>
+            <div class="modal-footer">
+                <button id="emmet-cookie-withdraw-btn" type="button" class="btn btn-primary"><span class="oi oi-ban"></span> Nem járulok hozzá</button>
+                <button id="emmet-cookie-grant-btn" type="button" class="btn btn-primary"><span class="oi oi-thumb-up"></span> Hozzájárulok</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div id="emmet-song-modal" class="modal fade" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-dialog-scrollable" role="document">
         <div class="modal-content">
@@ -24,7 +122,7 @@
 </div>
 
 <div id="emmet-song-playing-warn-modal" class="modal fade" tabindex="-1">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
         </div>
     </div>

@@ -118,6 +118,8 @@ function(bootstrap, mustache, emmetConfig, emmetLoader, emmetProjector, emmetSea
         emmetLoader.loadSongs(onSongsLoaded);
         loadChangelog();
         
+        var cookieModal = new bootstrap.Modal("#emmet-cookie-modal");
+
         // Set up navbar
         $("#emmet-nav-mainlink").click(function(e) {
             e.preventDefault();
@@ -134,6 +136,11 @@ function(bootstrap, mustache, emmetConfig, emmetLoader, emmetProjector, emmetSea
             emmetUtils.showPage("help");
             hideMainDropdown();
         });
+        $("#emmet-navdd-cookielink").click(function(e) {
+            e.preventDefault();
+            cookieModal.show();
+            hideMainDropdown();
+        })
         $("#emmet-toc-link").click(function(e) {
             e.preventDefault();
             emmetToc.show();
@@ -190,6 +197,24 @@ function(bootstrap, mustache, emmetConfig, emmetLoader, emmetProjector, emmetSea
         
         // Show main page by default
         emmetUtils.showPage("main");
+
+        // Cookie consent
+        document.getElementById("emmet-cookie-modal").addEventListener("hidden.bs.modal", () => {
+            document.querySelectorAll("#emmet-cookie-accordion .collapse").forEach(it => {
+                bootstrap.Collapse.getOrCreateInstance(it).hide();
+            });
+        });
+        document.getElementById("emmet-cookie-grant-btn").addEventListener("click", () => {
+            emmetConfig.grantConsent();
+            cookieModal.hide();
+        });
+        document.getElementById("emmet-cookie-withdraw-btn").addEventListener("click", () => {
+            emmetConfig.withdrawConsent();
+            cookieModal.hide();
+        });
+        if (emmetConfig.hasConsented() === undefined) {
+            cookieModal.show();
+        }
     };
     
     var onSongsLoaded = function(data) {

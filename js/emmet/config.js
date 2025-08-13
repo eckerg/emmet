@@ -1,21 +1,54 @@
 define(['jscookie', 'emmet/utils'], function(jsCookie, emmetUtils) {
-    const COOKIE_KEY = "emmet-settings";
+    const CONSENT_COOKIE_KEY = "emmet-consent";
+    const SETTINGS_COOKIE_KEY = "emmet-settings";
     const COOKIE_EXPIRY_DAYS = 365;
 
-    var settings = {};
     var defaults = {};
 
-    var cookieContent = jsCookie.get(COOKIE_KEY);
-    if (cookieContent !== undefined) {
-        settings = JSON.parse(atob(cookieContent));
-
-        // Save unchanged cookie content to extend the expiration time
-        jsCookie.set(COOKIE_KEY, cookieContent, {expires: COOKIE_EXPIRY_DAYS});
+    var liveCookieManager = {
+        get: key => {
+            var cookieContent = jsCookie.get(key);
+            if (cookieContent === undefined) {
+                return undefined;
+            }
+            // Refresh cookie
+            jsCookie.set(key, cookieContent, {expires: COOKIE_EXPIRY_DAYS});
+            return JSON.parse(atob(cookieContent));
+        },
+        set: (key, value) => jsCookie.set(key, btoa(JSON.stringify(value)), {expires: COOKIE_EXPIRY_DAYS}),
+        exists: key => jsCookie.get(key) === undefined,
+    };
+    var noopCookieManager = {
+        get: key => undefined,
+        set: (key, value) => {},
+        exists: key => false,
     }
+
+    // Load consent
+    var hasConsented = liveCookieManager.get(CONSENT_COOKIE_KEY);
+    var cookieManager = hasConsented ? liveCookieManager : noopCookieManager;
+
+    // Load settings
+    var settings = cookieManager.get(SETTINGS_COOKIE_KEY) || {};
 
     return {
         configureSettings: function(newSettings) {
-            for (let [key, value] of Object.entries(newSettings)) {defaults[key] = value;}
+            for (let [key, value] of Object.entries(newSettings)) {
+                defaults[key] = value;
+            }
+        },
+        hasConsented: () => hasConsented,
+        grantConsent: function() {
+            hasConsented = true;
+            liveCookieManager.set(CONSENT_COOKIE_KEY, true);
+            liveCookieManager.set(SETTINGS_COOKIE_KEY, settings);
+            cookieManager = liveCookieManager;
+        },
+        withdrawConsent: function() {
+            hasConsented = false;
+            liveCookieManager.set(CONSENT_COOKIE_KEY, false);
+            jsCookie.remove(SETTINGS_COOKIE_KEY);
+            cookieManager = noopCookieManager;
         },
         get: function(key) {
             if (key in settings) {
@@ -28,10 +61,10 @@ define(['jscookie', 'emmet/utils'], function(jsCookie, emmetUtils) {
         },
         set: function(key, value) {
             settings[key] = value;
-            jsCookie.set(COOKIE_KEY, btoa(JSON.stringify(settings)), {expires: COOKIE_EXPIRY_DAYS});
+            cookieManager.set(SETTINGS_COOKIE_KEY, settings);
         },
         cookieExists: function() {
-            return ! $.isEmptyObject(settings);
+            return cookieManager.exists(SETTINGS_COOKIE_KEY);
         },
     };
 });
