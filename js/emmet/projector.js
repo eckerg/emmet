@@ -6,8 +6,8 @@ function(bootstrap, mustache, emmetConfig, emmetSongData, emmetUtils) {
     });
 
     var openOverlay = function() {
-        document.getElementById("emmet-projector").style.display = "flex";
         window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+        document.getElementById("emmet-projector").style.display = "flex";
         document.body.style.overflow = "hidden";
     };
     var closeOverlay = function() {
