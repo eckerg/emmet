@@ -57,6 +57,9 @@ define([], function() {
             }
             return getSong(bookId, songNumber).lyrics.some(lyrics => lyrics.lang == lang);
         },
+        hasSongRecordings: function(bookId, songNumber) {
+            return hasSong(bookId, songNumber) && getSong(bookId, songNumber).records !== undefined;
+        },
         getSongFromCurrentBook: function(songNumber) {
             return getSong(currentBook, songNumber);
         },

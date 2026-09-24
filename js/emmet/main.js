@@ -230,6 +230,7 @@ function(bootstrap, emmetConfig, emmetLoader, emmetProjector, emmetRouter, emmet
             hasBook: bookId => emmetSongData.getBook(bookId)?.selectable === true,
             hasSong: emmetSongData.hasSong,
             hasSongLanguage: emmetSongData.hasSongLanguage,
+            hasSongRecordings: emmetSongData.hasSongRecordings,
             getMainSongLanguage: function(bookId, songNumber) {
                 var song = emmetSongData.getSong(bookId, songNumber);
                 var songInBook = song.books.find(book => book.id == bookId);

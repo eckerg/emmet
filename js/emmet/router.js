@@ -18,6 +18,7 @@ define(['emmet/notifier'], function(emmetNotifier) {
      * @property {function(string): boolean} hasBook
      * @property {function(string, string): boolean} hasSong
      * @property {function(string, string, string): boolean} hasSongLanguage
+     * @property {function(string, string): boolean} hasSongRecordings
      * @property {function(string, string): string} getMainSongLanguage
      * @property {function(string): void} setBook
      * @property {function("main"|"help"): void} showPage
@@ -169,6 +170,10 @@ define(['emmet/notifier'], function(emmetNotifier) {
             return invalidRoute(ERR_UNKNOWN_PATH);
         }
         route.tab = parts[0];
+        if (route.tab == "rec" && ! handlers.hasSongRecordings(bookId, action)) {
+            route.tab = "lyrics";
+            route.error = "Az énekhez nem érhető el felvétel.";
+        }
         return route;
     };
 
